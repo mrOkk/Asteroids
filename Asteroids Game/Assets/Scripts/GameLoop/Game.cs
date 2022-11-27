@@ -1,7 +1,11 @@
 ﻿using System.Threading.Tasks;
+using Extensions;
 using GameLoop.StateMachine;
 using GameLoop.StateMachine.StateEnterArgs;
 using GameLoop.StateMachine.States;
+using Input;
+using Interfaces.Services;
+using ResourceLoading;
 using Services;
 
 namespace GameLoop
@@ -24,9 +28,13 @@ namespace GameLoop
 			_stateMachine.Enter<LoadingState>(new LoadingStateArgs());
 		}
 
-		public async Task RegisterServices()
+		private async Task RegisterServices()
 		{
+			var resourceLoader = await new ResourceLoader().WaitForServiceReady();
+			_allServices.RegisterSingle<IResourceLoader>(resourceLoader);
 
+			var inputService = await new UnityNewInputSystem(resourceLoader).WaitForServiceReady();
+			_allServices.RegisterSingle<IInputService>(inputService);
 		}
 	}
 }
