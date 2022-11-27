@@ -18,6 +18,10 @@ namespace GameLoop.StateMachine
 
 		public void Init(AllServices services)
 		{
+			_states.Add(typeof(LoadingState), new LoadingState(this, services.GetSingle<IUISystem>()));
+			_states.Add(typeof(StartLevelState), new StartLevelState(this));
+			_states.Add(typeof(RunningLevelState), new RunningLevelState(this));
+			_states.Add(typeof(PlayerDeathState), new PlayerDeathState(this, services.GetSingle<IUISystem>()));
 		}
 
 		public void Enter<TState>(StateEnterArgs.StateEnterArgs args) where TState : class, IGameState

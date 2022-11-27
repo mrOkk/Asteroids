@@ -21,7 +21,7 @@ namespace GameLoop
 		{
 			await RegisterServices();
 			_stateMachine.Init(_allServices);
-			// TODO: Enter first state
+			_stateMachine.Enter<LoadingState>(new LoadingStateArgs());
 		}
 
 		public async Task RegisterServices()
