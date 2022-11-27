@@ -16,11 +16,13 @@ namespace Configs.Editor
 			{
 				var targetConfig = (AsteroidsConfig)target;
 				targetConfig.AsteroidsTiers ??= new List<AsteroidsTierData>();
-				var lastTier = targetConfig.AsteroidsTiers.Max(x => x.Tier);
+				var nextTier = targetConfig.AsteroidsTiers.Count > 0
+					? targetConfig.AsteroidsTiers.Max(x => x.Tier) + 1
+					: 0;
 
 				targetConfig.AsteroidsTiers.Add(new AsteroidsTierData
 				{
-					Tier = lastTier + 1
+					Tier = nextTier
 				});
 			}
 		}
