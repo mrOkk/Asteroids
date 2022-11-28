@@ -51,7 +51,8 @@ namespace Input
 
 		private async Task Initialize()
 		{
-			_inputHandler = await _resourceLoader.LoadResource<InputHandlingBehaviour>("InputHandler");
+			var handlerPrefab = await _resourceLoader.LoadResource<InputHandlingBehaviour>("InputHandler");
+			_inputHandler = Object.Instantiate(handlerPrefab);
 
 			_inputHandler.OnAccelerateChanged += AccelerateChangedHandler;
 			_inputHandler.OnRotateRightChanged += RotateRightChangedHandler;

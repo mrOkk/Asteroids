@@ -11,6 +11,7 @@
 
 		public void Enter(StateEnterArgs.StateEnterArgs args)
 		{
+			_stateMachine.Enter<RunningLevelState>(StateEnterArgs.StateEnterArgs.Empty);
 		}
 	}
 }

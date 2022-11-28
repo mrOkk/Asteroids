@@ -20,7 +20,7 @@ namespace GameLoop.StateMachine
 		{
 			_states.Add(typeof(LoadingState), new LoadingState(this, services.GetSingle<IUISystem>()));
 			_states.Add(typeof(StartLevelState), new StartLevelState(this));
-			_states.Add(typeof(RunningLevelState), new RunningLevelState(this));
+			_states.Add(typeof(RunningLevelState), new RunningLevelState(this, services.GetSingle<IInputService>()));
 			_states.Add(typeof(PlayerDeathState), new PlayerDeathState(this, services.GetSingle<IUISystem>()));
 		}
 
