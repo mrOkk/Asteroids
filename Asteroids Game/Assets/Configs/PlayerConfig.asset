@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd46b29e22d6484caeb19833adaae178, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 0}
-  Acceleration: 1
+  MissileFactory: {fileID: 11400000, guid: 9bf6d344239f8364c82a0d6836db0db0, type: 2}
+  LaserFactory: {fileID: 11400000, guid: e7182a14e29c75448be696d77283f19e, type: 2}
+  PlayerPrefab: {fileID: 4286528184896075121, guid: 7000428104a5d964393f8256b1b80cf0, type: 3}
+  Acceleration: 5
+  RotationSpeed: 300
+  ShootCooldown: 1
   LaserCount: 1
   LaserCooldown: 1
   LaserRestoreTime: 3

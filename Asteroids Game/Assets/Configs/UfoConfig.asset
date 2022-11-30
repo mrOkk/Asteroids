@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97449cd75236478a8b289c098be21ec2, type: 3}
   m_Name: UfoConfig
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 1813411026933765393, guid: 99b945caa15658e47aa51c44a1de2bb7, type: 3}
   Speed: 1.5
+  SpawnWeight: 1

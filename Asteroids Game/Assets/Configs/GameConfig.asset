@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892b886660914e0e9e628b07e46399d9, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  Player: {fileID: 11400000, guid: e520f75dadc5b0646b9ea774614a84eb, type: 2}
+  Asteroids: {fileID: 11400000, guid: f4bc5d50d30258248a82256b9af8fc0b, type: 2}
+  Ufo: {fileID: 11400000, guid: 91f4d868d4d6aa14d90069ac7724beae, type: 2}
+  CoreLoopRunner: {fileID: 8585117619011885391, guid: da87b0da415abe64896ce53b0a4715e5, type: 3}
+  InputHandler: {fileID: 8945433560270332286, guid: 6485560c294e5dc4fb5acd1f192ab55f, type: 3}
+  EnemySpawnTime: 2
+  SpawnOffsetFromEdge: 0.5
+  LevelFactory: {fileID: 11400000, guid: 302136914a9f75346a6b7814544dd27c, type: 2}

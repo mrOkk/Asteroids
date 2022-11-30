@@ -1,4 +1,5 @@
 ﻿using Interfaces.Services;
+using UnityEngine;
 
 namespace GameLoop.StateMachine.States
 {
@@ -15,12 +16,17 @@ namespace GameLoop.StateMachine.States
 
 		public void Enter(StateEnterArgs.StateEnterArgs args)
 		{
-
+			// TODO: ui Show death screen
 		}
 
 		public void Exit()
 		{
+			// TODO: ui Show death screen
+		}
 
+		private void Restart()
+		{
+			_stateMachine.Enter<StartLevelState>(StateEnterArgs.StateEnterArgs.Empty);
 		}
 	}
 }

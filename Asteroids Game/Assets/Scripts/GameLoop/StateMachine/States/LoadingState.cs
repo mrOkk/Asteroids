@@ -25,6 +25,8 @@ namespace GameLoop.StateMachine.States
 				throw new ArgumentException($"Wrong args type for {nameof(LoadingState)}");
 			}
 
+			// TODO: UI show loader
+
 			EnterAsync(loadingStateArgs.SceneName).Forget();
 		}
 
@@ -36,6 +38,8 @@ namespace GameLoop.StateMachine.States
 			{
 				await Task.Yield();
 			}
+
+			// TODO: UI hide loader
 
 			_stateMachine.Enter<StartLevelState>(StateEnterArgs.StateEnterArgs.Empty);
 		}

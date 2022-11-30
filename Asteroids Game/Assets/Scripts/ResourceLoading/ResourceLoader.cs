@@ -7,8 +7,6 @@ namespace ResourceLoading
 {
 	public class ResourceLoader : IResourceLoader
 	{
-		public Task InitializationTask => Task.CompletedTask;
-
 		private readonly Dictionary<string, Object> _loadedAssets = new();
 
 		public async Task<TResource> LoadResource<TResource>(string path) where TResource : Object
