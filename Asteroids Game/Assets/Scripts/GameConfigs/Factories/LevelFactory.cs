@@ -4,6 +4,7 @@ using Core.Pools;
 using Core.Systems;
 using Interfaces.Services;
 using Services;
+using UI.Contexts;
 using UnityEngine;
 
 namespace Spawning.Factories
@@ -51,7 +52,9 @@ namespace Spawning.Factories
 		{
 			var coreLoopRunner = Instantiate(_coreLoopRunnerPrefab);
 			coreLoopRunner.enabled = false;
-			var level = new Level(coreLoopRunner);
+			var coreContext = new CoreContext();
+			var level = new Level(coreLoopRunner, coreContext);
+
 
 			coreLoopRunner.RegisterSystem(new InputHandlingSystem(_inputService, _gameConfig.Player));
 			coreLoopRunner.RegisterSystem(new FireSystem());
@@ -67,6 +70,7 @@ namespace Spawning.Factories
 				, _gameConfig.SpawnOffsetFromEdge));
 			coreLoopRunner.RegisterSystem(new DeathSystem(coreLoopRunner));
 			coreLoopRunner.RegisterSystem(new LevelEndSystem(level));
+			coreLoopRunner.RegisterSystem(new UIUpdateSystem(coreContext));
 
 			coreLoopRunner.AddEntity(_playerFactory.SpawnEntity());
 			coreLoopRunner.AddEntity(_screenBoundsFactory.SpawnEntity());

@@ -16,15 +16,19 @@ namespace UI.Screens
 
 		public void Show(IResultContext resultContext)
 		{
+			_restartButton.onClick.AddListener(Restart);
+
 			_resultContext = resultContext;
 			_result.text = resultContext.Result.ToString("0");
 
 			Show();
 		}
 
-		private void Awake()
+		public override void Close()
 		{
-			_restartButton.onClick.AddListener(Restart);
+			base.Close();
+
+			_restartButton.onClick.RemoveAllListeners();
 		}
 
 		private void Restart()

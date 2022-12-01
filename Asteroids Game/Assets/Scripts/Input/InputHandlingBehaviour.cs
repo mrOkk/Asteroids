@@ -39,7 +39,6 @@ namespace Input
 
 		private void InputActionTriggeredHandler(InputAction.CallbackContext context)
 		{
-			Debug.Log("Input");
 			if (context.action == _accelerateAction.action)
 			{
 				HandleInputStatus(context, OnAccelerateChanged);

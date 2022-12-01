@@ -15,11 +15,15 @@ namespace UI
 		[SerializeField]
 		private ResultScreen _resultScreen;
 
+		[SerializeField]
+		private GameObject _uiEventSystem;
+
 		private ScreenBase _currentScreen;
 
 		private void Awake()
 		{
 			DontDestroyOnLoad(this);
+			DontDestroyOnLoad(_uiEventSystem);
 		}
 
 		public void ShowLoadingScreen(ILoadingContext loadingContext)
@@ -43,7 +47,7 @@ namespace UI
 			_currentScreen = _resultScreen;
 		}
 
-		private void CloseCurrentScreen()
+		public void CloseCurrentScreen()
 		{
 			if (_currentScreen == null)
 			{

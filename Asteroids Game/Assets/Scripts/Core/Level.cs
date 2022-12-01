@@ -1,5 +1,6 @@
 ﻿using System;
 using Interfaces.Services;
+using Interfaces.UIContexts;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -11,9 +12,12 @@ namespace Core
 
 		private CoreLoopRunner _runner;
 
-		public Level(CoreLoopRunner runner)
+		public ICoreContext CoreContext { get; }
+
+		public Level(CoreLoopRunner runner, ICoreContext coreContext)
 		{
 			_runner = runner;
+			CoreContext = coreContext;
 		}
 
 		public void Run()

@@ -30,6 +30,7 @@ namespace GameLoop.StateMachine.States
 			_level.OnEnded += LevelEndedHandler;
 			_level.Run();
 			_inputService.SetActive(true);
+			_uiSystem.ShowHud(_level.CoreContext);
 		}
 
 		public void Exit()
@@ -41,7 +42,7 @@ namespace GameLoop.StateMachine.States
 
 		private void LevelEndedHandler()
 		{
-			_stateMachine.Enter<PlayerDeathState>(StateEnterArgs.StateEnterArgs.Empty);
+			_stateMachine.Enter<PlayerDeathState>(new LevelEndedStateArgs(_level));
 		}
 	}
 }

@@ -7,5 +7,6 @@ namespace Interfaces.Services
 		void ShowLoadingScreen(ILoadingContext loadingContext);
 		void ShowHud(ICoreContext coreContext);
 		void ShowResults(IResultContext resultContext);
+		void CloseCurrentScreen();
 	}
 }

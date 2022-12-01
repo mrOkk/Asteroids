@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39f240c20ba448690c9ed4b43300fa0, type: 3}
   m_Name: Asteroids Factory
   m_EditorClassIdentifier: 
-  Config: {fileID: 11400000, guid: f4bc5d50d30258248a82256b9af8fc0b, type: 2}
+  _config: {fileID: 11400000, guid: f4bc5d50d30258248a82256b9af8fc0b, type: 2}
