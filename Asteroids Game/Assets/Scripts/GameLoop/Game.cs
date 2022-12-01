@@ -5,7 +5,6 @@ using GameLoop.StateMachine.StateEnterArgs;
 using GameLoop.StateMachine.States;
 using Input;
 using Interfaces.Services;
-using ResourceLoading;
 using Services;
 using UnityEngine;
 
