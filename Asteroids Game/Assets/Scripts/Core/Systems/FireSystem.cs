@@ -5,6 +5,13 @@ namespace Core.Systems
 {
 	public class FireSystem : CoreSystem
 	{
+		private readonly CoreLoopRunner _runner;
+
+		public FireSystem(CoreLoopRunner runner)
+		{
+			_runner = runner;
+		}
+
 		public override void Run(float deltaTime)
 		{
 			foreach (var entity in Entities)
@@ -25,7 +32,17 @@ namespace Core.Systems
 					firePoint += (Vector2)muzzleOffset;
 				}
 
-				// TODO: spawn projectile
+				var missileEntity = shoot.ShootFactory.SpawnEntity(firePoint, transform.rotation);
+
+				if (missileEntity.HasComponent<Movement>())
+				{
+					var missileMovement = missileEntity.GetComponent<Movement>();
+					missileMovement.Direction = transform.up;
+				}
+
+				_runner.AddEntity(missileEntity);
+
+				shoot.LastActivationTime = Time.time;
 			}
 		}
 

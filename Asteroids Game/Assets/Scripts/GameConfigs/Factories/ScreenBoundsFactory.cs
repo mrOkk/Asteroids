@@ -23,10 +23,11 @@ namespace Spawning.Factories
 			_sceneObjectsPool = new SceneObjectsPool<ScreenFieldView>(_screenBoundsPrefab);
 		}
 
-		public override WorldEntity SpawnEntity(Vector2 position = default)
+		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
 			var boundsEntity = new WorldEntity(this);
-			var boundsView = _sceneObjectsPool.Get(_cameraService.MainCamera.transform.position);
+			var cameraTransform = _cameraService.MainCamera.transform;
+			var boundsView = _sceneObjectsPool.Get(cameraTransform.position, cameraTransform.rotation);
 			boundsView.WorldEntity = boundsEntity;
 			boundsView.BoxCollider.size = _cameraService.WorldScreenSize;
 

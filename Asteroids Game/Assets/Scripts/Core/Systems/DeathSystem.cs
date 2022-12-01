@@ -6,7 +6,6 @@ namespace Core.Systems
 	public class DeathSystem : CoreSystem
 	{
 		private readonly CoreLoopRunner _runner;
-		private readonly List<WorldEntity> _deadEntities = new(3);
 
 		public DeathSystem(CoreLoopRunner runner)
 		{
@@ -19,21 +18,15 @@ namespace Core.Systems
 			{
 				if (CheckIfDead(entity))
 				{
-					_deadEntities.Add(entity);
+					if (entity.HasComponent<CustomDeathBehaviour>())
+					{
+						var deathBehaviour = entity.GetComponent<CustomDeathBehaviour>();
+						deathBehaviour.Handler.Handle(entity, _runner);
+					}
+
+					_runner.DestroyEntity(entity);
 				}
 			}
-
-			if (_deadEntities.Count <= 0)
-			{
-				return;
-			}
-
-			foreach (var entity in _deadEntities)
-			{
-				_runner.DestroyEntity(entity);
-			}
-
-			_deadEntities.Clear();
 		}
 
 		protected override bool Filter(WorldEntity entity) => entity.HasComponent<Health>();
@@ -43,17 +36,6 @@ namespace Core.Systems
 			if (entity.GetComponent<Health>().Value > 0)
 			{
 				return false;
-			}
-
-			if (entity.HasComponent<CustomDeathBehaviour>())
-			{
-				var onDeathSpawn = entity.GetComponent<CustomDeathBehaviour>();
-
-				for (var i = 0; i < onDeathSpawn.SpawnCount; i++)
-				{
-					var newEntity = onDeathSpawn.Factory.SpawnEntity();
-					_runner.AddEntity(newEntity);
-				}
 			}
 
 			return true;

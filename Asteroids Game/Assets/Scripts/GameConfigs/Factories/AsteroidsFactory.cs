@@ -2,6 +2,7 @@
 using Core;
 using Core.Pools;
 using Core.WorldEntities;
+using Core.WorldEntities.DeathBehaviour;
 using Interfaces.Services;
 using Services;
 using UnityEngine;
@@ -23,11 +24,11 @@ namespace Spawning.Factories
 			_viewsPool = new SceneObjectsPool<EntityView>(_config.Prefab);
 		}
 
-		public override WorldEntity SpawnEntity(Vector2 position = default)
+		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
 			var worldEntity = new WorldEntity(this);
 
-			var entityView = _viewsPool.Get(position);
+			var entityView = _viewsPool.Get(position, rotation);
 			entityView.WorldEntity = worldEntity;
 
 			var moveSpeed = _config.Speed;
@@ -43,9 +44,9 @@ namespace Spawning.Factories
 			movement.Speed = moveSpeed;
 			worldEntity.AddComponent(movement);
 
-			var rotation = ComponentsPool.Get<RotationSpeed>();
-			rotation.Value = rotationAngle;
-			worldEntity.AddComponent(rotation);
+			var rotationSpeed = ComponentsPool.Get<RotationSpeed>();
+			rotationSpeed.Value = rotationAngle;
+			worldEntity.AddComponent(rotationSpeed);
 
 			var transform = ComponentsPool.Get<TransformLink>();
 			transform.Transform = entityView.transform;
@@ -56,7 +57,7 @@ namespace Spawning.Factories
 			worldEntity.AddComponent(health);
 
 			var collisionHandler = new CompositeCollisionHandler();
-			collisionHandler.AddCollisionHandler(new PlayerCollisionHandler());
+			collisionHandler.AddCollisionHandler(new CollisionWithMissilesHandler());
 			collisionHandler.AddCollisionHandler(new ScreenBoundsCheckCollisionHandler(AllServices.Container.GetSingle<ICameraService>()));
 
 			var collisionBehaviour = ComponentsPool.Get<CollisionBehaviour>();
@@ -67,6 +68,14 @@ namespace Spawning.Factories
 			var collisionDetector = ComponentsPool.Get<CollisionDetectorLink>();
 			collisionDetector.CollisionDetector = entityView.CollisionDetector;
 			worldEntity.AddComponent(collisionDetector);
+
+			if (_config.NextTierFactory != null || _config.NextTierCountToSpawn > 0)
+			{
+				var deathBehaviour = ComponentsPool.Get<CustomDeathBehaviour>();
+				deathBehaviour.Handler =
+					new SpawnAsteroidsPartsOnDeath(_config.NextTierFactory, _config.NextTierCountToSpawn);
+				worldEntity.AddComponent(deathBehaviour);
+			}
 
 			return worldEntity;
 		}

@@ -15,4 +15,5 @@ MonoBehaviour:
   Prefab: {fileID: 6639212121739610002, guid: e6c1448af968023458816dd76b3a0a50, type: 3}
   Speed: 1
   MaxRotationSpeed: 180
-  NextTierConfig: {fileID: 0}
+  NextTierCountToSpawn: 0
+  NextTierFactory: {fileID: 0}

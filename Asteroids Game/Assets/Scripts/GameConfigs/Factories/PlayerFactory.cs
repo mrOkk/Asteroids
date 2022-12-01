@@ -24,9 +24,9 @@ namespace Spawning.Factories
 			_sceneObjectsPool = new SceneObjectsPool<PlayerEntityView>(_config.PlayerPrefab);
 		}
 
-		public override WorldEntity SpawnEntity(Vector2 position = default)
+		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
-			var view = _sceneObjectsPool.Get(position);
+			var view = _sceneObjectsPool.Get(position, rotation);
 			var entity = new WorldEntity(this);
 			view.WorldEntity = entity;
 
@@ -66,6 +66,7 @@ namespace Spawning.Factories
 			shootAbility.Cooldown = _config.ShootCooldown;
 			shootAbility.Requested = false;
 			shootAbility.LastActivationTime = 0f;
+			shootAbility.ShootFactory = _config.MissileFactory;
 			entity.AddComponent(shootAbility);
 
 			var alternativeShootAbility = ComponentsPool.Get<AlternativeShootAbility>();
@@ -75,10 +76,11 @@ namespace Spawning.Factories
 			alternativeShootAbility.Cooldown = _config.LaserCooldown;
 			alternativeShootAbility.LastActivationTime = 0f;
 			alternativeShootAbility.RestoreTime = _config.LaserRestoreTime;
+			// TODO: Add factory
 			entity.AddComponent(alternativeShootAbility);
 
 			var collisionHandler = new CompositeCollisionHandler();
-			collisionHandler.AddCollisionHandler(new PlayerCollisionHandler());
+			collisionHandler.AddCollisionHandler(new CollisionWithEnemiesHandler());
 			collisionHandler.AddCollisionHandler(new ScreenBoundsCheckCollisionHandler(AllServices.Container.GetSingle<ICameraService>()));
 
 			var collisionBehaviour = ComponentsPool.Get<CollisionBehaviour>();

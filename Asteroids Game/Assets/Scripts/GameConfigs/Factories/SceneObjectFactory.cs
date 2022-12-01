@@ -15,7 +15,7 @@ namespace Spawning.Factories
 			ComponentsPool = componentsPool;
 		}
 
-		public abstract WorldEntity SpawnEntity(Vector2 position = default);
+		public abstract WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default);
 
 		public virtual void DestroyEntity(WorldEntity worldEntity)
 		{

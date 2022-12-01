@@ -1,4 +1,6 @@
 ﻿using Configs;
+using Core;
+using Core.Pools;
 using Core.WorldEntities;
 using Interfaces.Services;
 using Services;
@@ -14,12 +16,19 @@ namespace Spawning.Factories
 		[SerializeField]
 		private UfoConfig _config;
 
-		public override WorldEntity SpawnEntity(Vector2 position = default)
+		private SceneObjectsPool<EntityView> _sceneObjectsPool;
+
+		public override void Initialize(AllServices services, ComponentsPool componentsPool)
+		{
+			base.Initialize(services, componentsPool);
+			_sceneObjectsPool = new SceneObjectsPool<EntityView>(_config.Prefab);
+		}
+
+		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
 			var worldEntity = new WorldEntity(this);
 
-			var prefab = _config.Prefab;
-			var entityView = Instantiate(prefab, position, Quaternion.identity);
+			var entityView = _sceneObjectsPool.Get(position, rotation);
 			entityView.WorldEntity = worldEntity;
 
 			var enemyTag = ComponentsPool.Get<EnemyTag>();
@@ -39,7 +48,7 @@ namespace Spawning.Factories
 			worldEntity.AddComponent(health);
 
 			var collisionHandler = new CompositeCollisionHandler();
-			collisionHandler.AddCollisionHandler(new PlayerCollisionHandler());
+			collisionHandler.AddCollisionHandler(new CollisionWithMissilesHandler());
 			collisionHandler.AddCollisionHandler(new ScreenBoundsCheckCollisionHandler(AllServices.Container.GetSingle<ICameraService>()));
 
 			var collisionBehaviour = ComponentsPool.Get<CollisionBehaviour>();
@@ -55,7 +64,11 @@ namespace Spawning.Factories
 
 		public override void DestroyEntity(WorldEntity worldEntity)
 		{
-			throw new System.NotImplementedException();
+			var viewLink = worldEntity.GetComponent<ViewLink<EntityView>>();
+			_sceneObjectsPool.Return(viewLink.Value);
+			viewLink.Value = null;
+
+			base.DestroyEntity(worldEntity);
 		}
 	}
 }

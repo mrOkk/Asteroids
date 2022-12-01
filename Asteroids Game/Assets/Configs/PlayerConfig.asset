@@ -17,7 +17,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 4286528184896075121, guid: 7000428104a5d964393f8256b1b80cf0, type: 3}
   Acceleration: 5
   RotationSpeed: 300
-  ShootCooldown: 1
+  ShootCooldown: 0.3
   LaserCount: 1
   LaserCooldown: 1
   LaserRestoreTime: 3

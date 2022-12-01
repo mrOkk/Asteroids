@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8a685f276c34f2eb5ed365d0d3bfc24, type: 3}
-  m_Name: Missile Factory
+  m_Script: {fileID: 11500000, guid: a39f240c20ba448690c9ed4b43300fa0, type: 3}
+  m_Name: Asteroids Small Factory
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 5108887623270927548, guid: f92ccfd5ea0acd24ba81d5b3b1ec331c, type: 3}
-  _speed: 7
-  _lifetime: 2
+  _config: {fileID: 11400000, guid: abcf2eb6e3a93b94c86a3bbc683e9ad6, type: 2}

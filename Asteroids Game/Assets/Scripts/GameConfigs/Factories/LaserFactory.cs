@@ -1,4 +1,7 @@
-﻿using Core.WorldEntities;
+﻿using Core;
+using Core.Pools;
+using Core.WorldEntities;
+using Services;
 using UnityEngine;
 
 namespace Spawning.Factories
@@ -8,16 +11,29 @@ namespace Spawning.Factories
 	{
 		// TODO Use config
 		[SerializeField]
-		public GameObject _config;
+		public EntityView _prefab;
 
-		public override WorldEntity SpawnEntity(Vector2 position = default)
+		private SceneObjectsPool<EntityView> _sceneObjectsPool;
+
+
+		public override void Initialize(AllServices services, ComponentsPool componentsPool)
+		{
+			base.Initialize(services, componentsPool);
+			_sceneObjectsPool = new SceneObjectsPool<EntityView>(_prefab);
+		}
+
+		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
 			throw new System.NotImplementedException();
 		}
 
 		public override void DestroyEntity(WorldEntity worldEntity)
 		{
-			throw new System.NotImplementedException();
+			var viewLink = worldEntity.GetComponent<ViewLink<EntityView>>();
+			_sceneObjectsPool.Return(viewLink.Value);
+			viewLink.Value = null;
+
+			base.DestroyEntity(worldEntity);
 		}
 	}
 }

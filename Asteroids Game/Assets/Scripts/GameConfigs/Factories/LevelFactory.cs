@@ -55,9 +55,8 @@ namespace Spawning.Factories
 			var coreContext = new CoreContext();
 			var level = new Level(coreLoopRunner, coreContext);
 
-
 			coreLoopRunner.RegisterSystem(new InputHandlingSystem(_inputService, _gameConfig.Player));
-			coreLoopRunner.RegisterSystem(new FireSystem());
+			coreLoopRunner.RegisterSystem(new FireSystem(coreLoopRunner));
 			coreLoopRunner.RegisterSystem(new AlternativeFireSystem());
 			coreLoopRunner.RegisterSystem(new AccelerationSystem());
 			coreLoopRunner.RegisterSystem(new MovementSystem());
@@ -71,6 +70,8 @@ namespace Spawning.Factories
 			coreLoopRunner.RegisterSystem(new DeathSystem(coreLoopRunner));
 			coreLoopRunner.RegisterSystem(new LevelEndSystem(level));
 			coreLoopRunner.RegisterSystem(new UIUpdateSystem(coreContext));
+			coreLoopRunner.RegisterSystem(new LifetimeSystem(coreLoopRunner));
+			coreLoopRunner.RegisterSystem(new KillScoreSystem(coreContext));
 
 			coreLoopRunner.AddEntity(_playerFactory.SpawnEntity());
 			coreLoopRunner.AddEntity(_screenBoundsFactory.SpawnEntity());

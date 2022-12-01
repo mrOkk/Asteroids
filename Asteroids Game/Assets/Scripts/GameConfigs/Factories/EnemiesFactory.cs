@@ -19,7 +19,7 @@ namespace Spawning.Factories
 
 		private float _totalWeight;
 
-		public override WorldEntity SpawnEntity(Vector2 position = default)
+		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
 			var totalWeight = GetTotalWeight();
 			var weightValue = Random.Range(0f, totalWeight);
@@ -39,11 +39,6 @@ namespace Spawning.Factories
 			}
 
 			return selectedFactory.SpawnEntity(position);
-		}
-
-		public override void DestroyEntity(WorldEntity worldEntity)
-		{
-			throw new NotImplementedException();
 		}
 
 		private float GetTotalWeight()

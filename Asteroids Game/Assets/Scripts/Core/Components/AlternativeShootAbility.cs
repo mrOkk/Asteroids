@@ -1,4 +1,6 @@
-﻿namespace Core.WorldEntities
+﻿using Spawning.Factories;
+
+namespace Core.WorldEntities
 {
 	public class AlternativeShootAbility : IComponent
 	{
@@ -9,5 +11,7 @@
 		public float Cooldown;
 		public float LastRestoredTime;
 		public float RestoreTime;
+
+		public SceneObjectFactory ShootFactory;
 	}
 }

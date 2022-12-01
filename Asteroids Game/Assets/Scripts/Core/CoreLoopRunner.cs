@@ -48,9 +48,9 @@ namespace Core
 
 		private void Update()
 		{
+			AddTickEntities();
 			UpdateTick();
 			RemoveTickEntities();
-			AddTickEntities();
 		}
 
 		private void UpdateTick()

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Core;
+﻿using Core;
+using Spawning.Factories;
 using UnityEngine;
 
 namespace Configs
@@ -10,6 +10,7 @@ namespace Configs
 		public EntityView Prefab;
 		public float Speed = 1f;
 		public float MaxRotationSpeed = 30f;
-		public AsteroidsConfig NextTierConfig;
+		public int NextTierCountToSpawn = 2;
+		public AsteroidsFactory NextTierFactory;
 	}
 }

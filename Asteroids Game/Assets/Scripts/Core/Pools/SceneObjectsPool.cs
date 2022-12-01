@@ -13,10 +13,10 @@ namespace Core.Pools
 			_prefab = prefab;
 		}
 
-		public TView Get(Vector2 position)
+		public TView Get(Vector2 position, Quaternion rotation)
 		{
 			var instance = _instances.Count > 0 ? _instances.Pop() : Object.Instantiate(_prefab);
-			instance.transform.position = position;
+			instance.transform.SetPositionAndRotation(position, rotation == default ? Quaternion.identity : rotation);
 			instance.gameObject.SetActive(true);
 			return instance;
 		}
