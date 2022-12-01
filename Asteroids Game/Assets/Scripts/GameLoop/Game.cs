@@ -1,5 +1,6 @@
 ﻿using Core;
 using GameConfigs;
+using GameConfigs.Configs;
 using GameLoop.StateMachine;
 using GameLoop.StateMachine.StateEnterArgs;
 using GameLoop.StateMachine.States;

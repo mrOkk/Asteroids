@@ -1,13 +1,12 @@
-﻿using Core.Systems;
-using Core.WorldEntities;
-using CoreGameplay.Components;
+﻿using CoreGameplay.Components;
 using CoreGameplay.Components.Tags;
+using CoreSystem;
 using Interfaces.UIContexts;
 using UnityEngine;
 
 namespace CoreGameplay.Systems
 {
-	public class UIUpdateSystem : CoreSystem
+	public class UIUpdateSystem : CoreSystem.CoreSystem
 	{
 		private readonly ICoreContext _coreContext;
 

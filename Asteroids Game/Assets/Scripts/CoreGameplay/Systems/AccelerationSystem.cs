@@ -1,11 +1,10 @@
-﻿using Core.Systems;
-using Core.WorldEntities;
-using CoreGameplay.Components;
+﻿using CoreGameplay.Components;
+using CoreSystem;
 using UnityEngine;
 
 namespace CoreGameplay.Systems
 {
-	public class AccelerationSystem : CoreSystem
+	public class AccelerationSystem : CoreSystem.CoreSystem
 	{
 		public override void Run(float deltaTime)
 		{

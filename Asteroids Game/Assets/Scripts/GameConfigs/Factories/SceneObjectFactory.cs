@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.Pools;
-using Core.WorldEntities;
+using CoreSystem;
+using CoreSystem.Interfaces;
 using Services;
 using UnityEngine;
 

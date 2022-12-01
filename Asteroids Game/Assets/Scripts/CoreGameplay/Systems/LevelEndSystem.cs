@@ -1,11 +1,10 @@
-﻿using Core.Systems;
-using Core.WorldEntities;
-using CoreGameplay.Components.Tags;
+﻿using CoreGameplay.Components.Tags;
+using CoreSystem;
 using Interfaces.Services;
 
 namespace CoreGameplay.Systems
 {
-	public class LevelEndSystem : CoreSystem
+	public class LevelEndSystem : CoreSystem.CoreSystem
 	{
 		private readonly ILevel _level;
 

@@ -1,10 +1,9 @@
-﻿using Core.Systems;
-using Core.WorldEntities;
-using CoreGameplay.Components;
+﻿using CoreGameplay.Components;
+using CoreSystem;
 
 namespace CoreGameplay.Systems
 {
-	public class FollowSystem : CoreSystem
+	public class FollowSystem : CoreSystem.CoreSystem
 	{
 		public override void Run(float deltaTime)
 		{

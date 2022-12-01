@@ -1,11 +1,10 @@
-﻿using Core.Systems;
-using Core.WorldEntities;
-using CoreGameplay.Components;
+﻿using CoreGameplay.Components;
 using CoreGameplay.Components.Collisions;
+using CoreSystem;
 
 namespace CoreGameplay.Systems
 {
-	public class CollisionDetectionSystem : CoreSystem
+	public class CollisionDetectionSystem : CoreSystem.CoreSystem
 	{
 		public override void AddEntity(WorldEntity entity)
 		{

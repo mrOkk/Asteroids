@@ -1,12 +1,12 @@
 ﻿using Core;
-using Core.Systems;
-using Core.WorldEntities;
 using CoreGameplay.Components;
+using CoreSystem;
+using CoreSystem.Interfaces;
 using UnityEngine;
 
 namespace CoreGameplay.Systems
 {
-	public class LifetimeSystem : CoreSystem
+	public class LifetimeSystem : CoreSystem.CoreSystem
 	{
 		private readonly ICoreWorld _world;
 

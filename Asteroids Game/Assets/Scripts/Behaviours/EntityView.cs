@@ -1,4 +1,4 @@
-﻿using Core.WorldEntities;
+﻿using CoreSystem;
 using UnityEngine;
 
 namespace Core

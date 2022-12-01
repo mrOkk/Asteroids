@@ -1,5 +1,5 @@
-﻿using Core.WorldEntities;
-using CoreGameplay.Components.DeathBehaviour;
+﻿using CoreGameplay.Components.DeathBehaviour;
+using CoreSystem;
 
 namespace CoreGameplay.Components
 {

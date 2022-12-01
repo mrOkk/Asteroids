@@ -1,4 +1,4 @@
-﻿namespace Core.WorldEntities
+﻿namespace CoreSystem
 {
 	public interface IComponent
 	{

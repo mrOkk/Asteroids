@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.WorldEntities;
+using CoreSystem;
 
 namespace Core.Pools
 {

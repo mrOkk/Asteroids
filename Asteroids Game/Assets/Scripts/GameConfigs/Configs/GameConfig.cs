@@ -1,10 +1,9 @@
 ﻿using Core;
-using GameConfigs.Configs;
 using GameConfigs.Factories;
 using Input;
 using UnityEngine;
 
-namespace GameConfigs
+namespace GameConfigs.Configs
 {
 	[CreateAssetMenu(fileName = "GameConfig", menuName = "Asteroids/GameConfig")]
 	public class GameConfig : ScriptableObject

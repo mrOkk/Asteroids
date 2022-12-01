@@ -1,15 +1,15 @@
 ﻿using Core;
-using Core.Systems;
-using Core.WorldEntities;
 using CoreGameplay.Components;
 using CoreGameplay.Components.Tags;
+using CoreSystem;
+using CoreSystem.Interfaces;
 using GameConfigs.Factories;
 using Interfaces.Services;
 using UnityEngine;
 
 namespace CoreGameplay.Systems
 {
-	public class EnemySpawnSystem : CoreSystem
+	public class EnemySpawnSystem : CoreSystem.CoreSystem
 	{
 		private readonly ICoreWorld _world;
 		private readonly SceneObjectFactory _enemiesFactory;

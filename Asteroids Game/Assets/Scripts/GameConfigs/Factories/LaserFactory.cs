@@ -1,8 +1,9 @@
 ﻿using Core;
 using Core.Pools;
-using Core.WorldEntities;
 using CoreGameplay.Components;
 using CoreGameplay.Components.Tags;
+using CoreSystem;
+using CoreSystem.Interfaces;
 using Services;
 using UnityEngine;
 

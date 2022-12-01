@@ -1,11 +1,11 @@
 ﻿using Core;
-using Core.Systems;
-using Core.WorldEntities;
 using CoreGameplay.Components;
+using CoreSystem;
+using CoreSystem.Interfaces;
 
 namespace CoreGameplay.Systems
 {
-	public class DeathSystem : CoreSystem
+	public class DeathSystem : CoreSystem.CoreSystem
 	{
 		private readonly ICoreWorld _world;
 

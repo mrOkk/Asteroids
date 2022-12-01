@@ -1,12 +1,11 @@
 ﻿using Core;
-using Core.Systems;
-using Core.WorldEntities;
 using CoreGameplay.Components;
+using CoreSystem;
 using UnityEngine;
 
 namespace CoreGameplay.Systems
 {
-	public class LaserShootSystem : CoreSystem
+	public class LaserShootSystem : CoreSystem.CoreSystem
 	{
 		private RaycastHit2D[] _hits = new RaycastHit2D[20];
 

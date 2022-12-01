@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Core.Systems;
-using Core.WorldEntities;
+using CoreSystem;
+using CoreSystem.Interfaces;
 using UnityEngine;
 
 namespace Core
@@ -9,7 +9,7 @@ namespace Core
 	{
 		public IReadOnlyList<WorldEntity> AllEntities => _allEntities;
 
-		private List<CoreSystem> _systems = new(10);
+		private List<CoreSystem.CoreSystem> _systems = new(10);
 		private List<WorldEntity> _allEntities = new(40);
 		private List<WorldEntity> _entitiesToDelete = new(10);
 		private List<WorldEntity> _entitiesToAdd = new(10);
@@ -19,7 +19,7 @@ namespace Core
 			enabled = active;
 		}
 
-		public void RegisterSystem(CoreSystem system)
+		public void RegisterSystem(CoreSystem.CoreSystem system)
 		{
 			_systems.Add(system);
 		}

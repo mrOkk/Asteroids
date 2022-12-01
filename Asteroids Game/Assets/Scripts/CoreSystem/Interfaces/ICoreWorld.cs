@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using Core.Systems;
-using Core.WorldEntities;
 
-namespace Core
+namespace CoreSystem.Interfaces
 {
 	public interface ICoreWorld
 	{

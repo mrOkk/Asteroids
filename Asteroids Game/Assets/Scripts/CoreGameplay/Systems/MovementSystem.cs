@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using Core.Systems;
-using Core.WorldEntities;
 using CoreGameplay.Components;
+using CoreSystem;
 using UnityEngine;
 
 namespace CoreGameplay.Systems
 {
-	public class MovementSystem : CoreSystem
+	public class MovementSystem : CoreSystem.CoreSystem
 	{
 		private List<WorldEntity> _filter;
 

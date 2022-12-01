@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Core.WorldEntities;
+using CoreSystem;
 
 namespace CoreGameplay.Components.Collisions
 {

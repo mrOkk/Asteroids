@@ -1,4 +1,5 @@
 ﻿using GameConfigs;
+using GameConfigs.Configs;
 using UI;
 using UnityEngine;
 

@@ -1,6 +1,4 @@
-﻿using Core.WorldEntities;
-
-namespace Core
+﻿namespace CoreSystem.Interfaces
 {
 	public interface IEntityDestroyer
 	{

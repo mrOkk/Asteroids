@@ -1,5 +1,5 @@
-﻿using Core.WorldEntities;
-using CoreGameplay.Components.Tags;
+﻿using CoreGameplay.Components.Tags;
+using CoreSystem;
 
 namespace CoreGameplay.Components.Collisions
 {

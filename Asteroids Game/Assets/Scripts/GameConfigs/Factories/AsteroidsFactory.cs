@@ -1,10 +1,11 @@
 ﻿using Core;
 using Core.Pools;
-using Core.WorldEntities;
 using CoreGameplay.Components;
 using CoreGameplay.Components.Collisions;
 using CoreGameplay.Components.DeathBehaviour;
 using CoreGameplay.Components.Tags;
+using CoreSystem;
+using CoreSystem.Interfaces;
 using GameConfigs.Configs;
 using Interfaces.Services;
 using Services;

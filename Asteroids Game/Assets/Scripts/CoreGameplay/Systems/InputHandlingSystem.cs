@@ -1,13 +1,12 @@
-﻿using Core.Systems;
-using Core.WorldEntities;
-using CoreGameplay.Components;
+﻿using CoreGameplay.Components;
 using CoreGameplay.Components.Tags;
+using CoreSystem;
 using GameConfigs.Configs;
 using Interfaces.Services;
 
 namespace CoreGameplay.Systems
 {
-	public class InputHandlingSystem : CoreSystem
+	public class InputHandlingSystem : CoreSystem.CoreSystem
 	{
 		private readonly IInputService _inputService;
 		private readonly PlayerConfig _playerConfig;

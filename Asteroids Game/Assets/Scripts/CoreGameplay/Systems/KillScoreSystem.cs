@@ -1,11 +1,10 @@
-﻿using Core.Systems;
-using Core.WorldEntities;
-using CoreGameplay.Components.Tags;
+﻿using CoreGameplay.Components.Tags;
+using CoreSystem;
 using Interfaces.UIContexts;
 
 namespace CoreGameplay.Systems
 {
-	public class KillScoreSystem : CoreSystem
+	public class KillScoreSystem : CoreSystem.CoreSystem
 	{
 		private readonly ICoreContext _coreContext;
 

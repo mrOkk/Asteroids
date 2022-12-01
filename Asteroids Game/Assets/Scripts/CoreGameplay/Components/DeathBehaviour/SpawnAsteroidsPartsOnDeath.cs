@@ -1,5 +1,6 @@
 ﻿using Core;
-using Core.WorldEntities;
+using CoreSystem;
+using CoreSystem.Interfaces;
 using Extensions;
 using GameConfigs.Factories;
 using UnityEngine;

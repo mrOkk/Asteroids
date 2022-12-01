@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Core.WorldEntities;
 
-namespace Core.Systems
+namespace CoreSystem
 {
 	public abstract class CoreSystem
 	{
