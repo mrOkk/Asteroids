@@ -11,8 +11,8 @@ namespace Core
 
 		private List<CoreSystem.CoreSystem> _systems = new(10);
 		private List<WorldEntity> _allEntities = new(40);
-		private List<WorldEntity> _entitiesToDelete = new(10);
-		private List<WorldEntity> _entitiesToAdd = new(10);
+		private HashSet<WorldEntity> _entitiesToDelete = new(10);
+		private HashSet<WorldEntity> _entitiesToAdd = new(10);
 
 		public void SetActive(bool active)
 		{
