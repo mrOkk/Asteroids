@@ -18,9 +18,10 @@ namespace Spawning.Factories
 
 		private SceneObjectsPool<PlayerEntityView> _sceneObjectsPool;
 
-		public override void Initialize(AllServices services, ComponentsPool componentsPool)
+		public override void Initialize(
+			AllServices services, ComponentsPool componentsPool, ICoreWorld coreWorld)
 		{
-			base.Initialize(services, componentsPool);
+			base.Initialize(services, componentsPool, coreWorld);
 			_sceneObjectsPool = new SceneObjectsPool<PlayerEntityView>(_config.PlayerPrefab);
 		}
 
@@ -76,7 +77,7 @@ namespace Spawning.Factories
 			alternativeShootAbility.Cooldown = _config.LaserCooldown;
 			alternativeShootAbility.LastActivationTime = 0f;
 			alternativeShootAbility.RestoreTime = _config.LaserRestoreTime;
-			// TODO: Add factory
+			alternativeShootAbility.ShootFactory = _config.LaserFactory;
 			entity.AddComponent(alternativeShootAbility);
 
 			var collisionHandler = new CompositeCollisionHandler();

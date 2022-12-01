@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionDetector: {fileID: 1954407990905873082}
-  MuzzlePointTransform: {fileID: 4188802193320006187}
+  MuzzlePointTransform: {fileID: 2513842078762486366}
 --- !u!114 &1954407990905873082
 MonoBehaviour:
   m_ObjectHideFlags: 0

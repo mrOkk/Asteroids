@@ -5,12 +5,19 @@ using UnityEngine;
 
 namespace Core
 {
-	public class CoreLoopRunner : MonoBehaviour
+	public class CoreLoopRunner : MonoBehaviour, ICoreWorld
 	{
+		public IReadOnlyList<WorldEntity> AllEntities => _allEntities;
+
 		private List<CoreSystem> _systems = new(10);
 		private List<WorldEntity> _allEntities = new(40);
 		private List<WorldEntity> _entitiesToDelete = new(10);
 		private List<WorldEntity> _entitiesToAdd = new(10);
+
+		public void SetActive(bool active)
+		{
+			enabled = active;
+		}
 
 		public void RegisterSystem(CoreSystem system)
 		{

@@ -9,9 +9,15 @@ namespace Spawning.Factories
 	public abstract class SceneObjectFactory : ScriptableObject, IEntityDestroyer
 	{
 		protected ComponentsPool ComponentsPool;
+		protected ICoreWorld CoreWorld;
 
-		public virtual void Initialize(AllServices services, ComponentsPool componentsPool)
+		public LevelContext LevelContext { get; set; }
+
+		public virtual void Initialize(AllServices services
+			, ComponentsPool componentsPool
+			, ICoreWorld coreWorld)
 		{
+			CoreWorld = coreWorld;
 			ComponentsPool = componentsPool;
 		}
 

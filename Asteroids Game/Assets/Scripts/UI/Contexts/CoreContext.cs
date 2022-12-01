@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.WorldEntities;
 using Interfaces.UIContexts;
 using UnityEngine;
 
@@ -96,5 +97,7 @@ namespace UI.Contexts
 		}
 
 		public int KillScore { get; set; }
+
+		public WorldEntity PlayerEntity { get; set; }
 	}
 }

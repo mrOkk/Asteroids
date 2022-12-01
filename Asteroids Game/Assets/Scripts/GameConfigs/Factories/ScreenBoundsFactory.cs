@@ -16,9 +16,10 @@ namespace Spawning.Factories
 		private ICameraService _cameraService;
 		private SceneObjectsPool<ScreenFieldView> _sceneObjectsPool;
 
-		public override void Initialize(AllServices services, ComponentsPool componentsPool)
+		public override void Initialize(
+			AllServices services, ComponentsPool componentsPool, ICoreWorld coreWorld)
 		{
-			base.Initialize(services, componentsPool);
+			base.Initialize(services, componentsPool, coreWorld);
 			_cameraService = services.GetSingle<ICameraService>();
 			_sceneObjectsPool = new SceneObjectsPool<ScreenFieldView>(_screenBoundsPrefab);
 		}

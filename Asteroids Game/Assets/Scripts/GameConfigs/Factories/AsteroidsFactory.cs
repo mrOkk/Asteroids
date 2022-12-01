@@ -17,9 +17,10 @@ namespace Spawning.Factories
 
 		private SceneObjectsPool<EntityView> _viewsPool;
 
-		public override void Initialize(AllServices services, ComponentsPool componentsPool)
+		public override void Initialize(
+			AllServices services, ComponentsPool componentsPool, ICoreWorld coreWorld)
 		{
-			base.Initialize(services, componentsPool);
+			base.Initialize(services, componentsPool, coreWorld);
 
 			_viewsPool = new SceneObjectsPool<EntityView>(_config.Prefab);
 		}

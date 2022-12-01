@@ -13,6 +13,13 @@ namespace Core.Systems
 				collisionDetector.OnTriggerExit += TriggerExitHandler;
 			}
 
+			if (entity.HasComponent<Laser>())
+			{
+				var lase = entity.GetComponent<Laser>();
+				lase.OnHitDetected += TriggerEnterHandler;
+				lase.OnHitDetected += TriggerExitHandler;
+			}
+
 			base.AddEntity(entity);
 		}
 
@@ -23,6 +30,13 @@ namespace Core.Systems
 				var collisionDetector = entity.GetComponent<CollisionDetectorLink>().CollisionDetector;
 				collisionDetector.OnTriggerEnter -= TriggerEnterHandler;
 				collisionDetector.OnTriggerExit -= TriggerExitHandler;
+			}
+
+			if (entity.HasComponent<Laser>())
+			{
+				var lase = entity.GetComponent<Laser>();
+				lase.OnHitDetected -= TriggerEnterHandler;
+				lase.OnHitDetected -= TriggerExitHandler;
 			}
 
 			base.RemoveEntity(entity);

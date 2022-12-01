@@ -1,10 +1,18 @@
 ﻿using Core.WorldEntities;
+using Spawning.Factories;
 using UnityEngine;
 
 namespace Core.Systems
 {
 	public class AlternativeFireSystem : CoreSystem
 	{
+		private readonly CoreLoopRunner _runner;
+
+		public AlternativeFireSystem(CoreLoopRunner runner)
+		{
+			_runner = runner;
+		}
+
 		public override void Run(float deltaTime)
 		{
 			foreach (var entity in Entities)
@@ -50,7 +58,8 @@ namespace Core.Systems
 				firePoint += (Vector2)muzzleOffset;
 			}
 
-			// TODO: spawn line
+			var shootEntity = alternativeShoot.ShootFactory.SpawnEntity(firePoint, transform.rotation);
+			_runner.AddEntity(shootEntity);
 
 			if (alternativeShoot.Count == alternativeShoot.MaxCount)
 			{

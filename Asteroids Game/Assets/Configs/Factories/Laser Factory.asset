@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43619152c6274b2780740382d4266773, type: 3}
   m_Name: Laser Factory
   m_EditorClassIdentifier: 
-  Config: {fileID: 0}
+  _prefab: {fileID: 674722132821623965, guid: 7d836c426082fab48b707bb2856e582b, type: 3}

@@ -18,9 +18,11 @@ namespace Spawning.Factories
 
 		private SceneObjectsPool<EntityView> _sceneObjectsPool;
 
-		public override void Initialize(AllServices services, ComponentsPool componentsPool)
+		public override void Initialize(AllServices services
+			, ComponentsPool componentsPool
+			, ICoreWorld coreWorld)
 		{
-			base.Initialize(services, componentsPool);
+			base.Initialize(services, componentsPool, coreWorld);
 			_sceneObjectsPool = new SceneObjectsPool<EntityView>(_config.Prefab);
 		}
 
@@ -30,6 +32,10 @@ namespace Spawning.Factories
 
 			var entityView = _sceneObjectsPool.Get(position, rotation);
 			entityView.WorldEntity = worldEntity;
+
+			var viewLink = ComponentsPool.Get<ViewLink<EntityView>>();
+			viewLink.Value = entityView;
+			worldEntity.AddComponent(viewLink);
 
 			var enemyTag = ComponentsPool.Get<EnemyTag>();
 			worldEntity.AddComponent(enemyTag);
@@ -58,6 +64,23 @@ namespace Spawning.Factories
 			var collisionDetector = ComponentsPool.Get<CollisionDetectorLink>();
 			collisionDetector.CollisionDetector = entityView.CollisionDetector;
 			worldEntity.AddComponent(collisionDetector);
+
+			WorldEntity playerEntity = null;
+			for (var i = 0; i < CoreWorld.AllEntities.Count && playerEntity == null; i++)
+			{
+				var existingEntity = CoreWorld.AllEntities[i];
+				if (existingEntity.HasComponent<PlayerTag>())
+				{
+					playerEntity = existingEntity;
+				}
+			}
+
+			if (playerEntity != null && playerEntity.HasComponent<TransformLink>())
+			{
+				var follow = ComponentsPool.Get<FollowTarget>();
+				follow.Transform = playerEntity.GetComponent<TransformLink>().Transform;
+				worldEntity.AddComponent(follow);
+			}
 
 			return worldEntity;
 		}

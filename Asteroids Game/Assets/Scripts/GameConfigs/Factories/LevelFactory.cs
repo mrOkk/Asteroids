@@ -37,6 +37,10 @@ namespace Spawning.Factories
 			, GameConfig gameConfig)
 		{
 			_coreLoopRunnerPrefab = coreLoopRunnerPrefab;
+			_coreLoopRunner = Instantiate(_coreLoopRunnerPrefab);
+			_coreLoopRunner.SetActive(false);
+			DontDestroyOnLoad(_coreLoopRunner);
+
 			_inputService = services.GetSingle<IInputService>();
 			_cameraService = services.GetSingle<ICameraService>();
 			_gameConfig = gameConfig;
@@ -44,37 +48,37 @@ namespace Spawning.Factories
 
 			foreach (var factory in _allFactories)
 			{
-				factory.Initialize(services, _componentsPool);
+				factory.Initialize(services, _componentsPool, _coreLoopRunner);
 			}
 		}
 
 		public ILevel PrepareLevel()
 		{
-			var coreLoopRunner = Instantiate(_coreLoopRunnerPrefab);
-			coreLoopRunner.enabled = false;
 			var coreContext = new CoreContext();
-			var level = new Level(coreLoopRunner, coreContext);
+			var level = new Level(_coreLoopRunner, coreContext);
 
-			coreLoopRunner.RegisterSystem(new InputHandlingSystem(_inputService, _gameConfig.Player));
-			coreLoopRunner.RegisterSystem(new FireSystem(coreLoopRunner));
-			coreLoopRunner.RegisterSystem(new AlternativeFireSystem());
-			coreLoopRunner.RegisterSystem(new AccelerationSystem());
-			coreLoopRunner.RegisterSystem(new MovementSystem());
-			coreLoopRunner.RegisterSystem(new RotatingSystem());
-			coreLoopRunner.RegisterSystem(new CollisionDetectionSystem());
-			coreLoopRunner.RegisterSystem(new EnemySpawnSystem(coreLoopRunner
+			_coreLoopRunner.RegisterSystem(new InputHandlingSystem(_inputService, _gameConfig.Player));
+			_coreLoopRunner.RegisterSystem(new FireSystem(_coreLoopRunner));
+			_coreLoopRunner.RegisterSystem(new AlternativeFireSystem(_coreLoopRunner));
+			_coreLoopRunner.RegisterSystem(new AccelerationSystem());
+			_coreLoopRunner.RegisterSystem(new MovementSystem());
+			_coreLoopRunner.RegisterSystem(new RotatingSystem());
+			_coreLoopRunner.RegisterSystem(new CollisionDetectionSystem());
+			_coreLoopRunner.RegisterSystem(new EnemySpawnSystem(_coreLoopRunner
 				, _enemiesFactory
 				, _cameraService
 				, _gameConfig.EnemySpawnTime
 				, _gameConfig.SpawnOffsetFromEdge));
-			coreLoopRunner.RegisterSystem(new DeathSystem(coreLoopRunner));
-			coreLoopRunner.RegisterSystem(new LevelEndSystem(level));
-			coreLoopRunner.RegisterSystem(new UIUpdateSystem(coreContext));
-			coreLoopRunner.RegisterSystem(new LifetimeSystem(coreLoopRunner));
-			coreLoopRunner.RegisterSystem(new KillScoreSystem(coreContext));
+			_coreLoopRunner.RegisterSystem(new DeathSystem(_coreLoopRunner));
+			_coreLoopRunner.RegisterSystem(new LevelEndSystem(level));
+			_coreLoopRunner.RegisterSystem(new UIUpdateSystem(coreContext));
+			_coreLoopRunner.RegisterSystem(new LifetimeSystem(_coreLoopRunner));
+			_coreLoopRunner.RegisterSystem(new KillScoreSystem(coreContext));
+			_coreLoopRunner.RegisterSystem(new LaserShootSystem());
+			_coreLoopRunner.RegisterSystem(new FollowSystem());
 
-			coreLoopRunner.AddEntity(_playerFactory.SpawnEntity());
-			coreLoopRunner.AddEntity(_screenBoundsFactory.SpawnEntity());
+			_coreLoopRunner.AddEntity(_playerFactory.SpawnEntity());
+			_coreLoopRunner.AddEntity(_screenBoundsFactory.SpawnEntity());
 
 			return level;
 		}
