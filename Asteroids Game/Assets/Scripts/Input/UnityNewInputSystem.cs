@@ -21,7 +21,6 @@ namespace Input
 		private bool _alternativeFire;
 		public bool AlternativeFire => _alternativeFire;
 
-		private readonly IResourceLoader _resourceLoader;
 		private readonly TaskCompletionSource<object> _initializationTask;
 
 		private InputHandlingBehaviour _inputHandler;

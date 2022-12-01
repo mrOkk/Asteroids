@@ -14,12 +14,14 @@ namespace GameLoop
 	public class Game
 	{
 		private readonly GameConfig _gameConfig;
+		private readonly IUISystem _uiSystem;
 		private readonly GameStateMachine _stateMachine;
 		private readonly AllServices _allServices;
 
-		public Game(GameConfig gameConfig)
+		public Game(GameConfig gameConfig, IUISystem uiSystem)
 		{
 			_gameConfig = gameConfig;
+			_uiSystem = uiSystem;
 			_allServices = AllServices.Container;
 			_stateMachine = new GameStateMachine();
 		}
@@ -33,8 +35,7 @@ namespace GameLoop
 
 		private void RegisterServices()
 		{
-			var resourceLoader = new ResourceLoader();
-			_allServices.RegisterSingle<IResourceLoader>(resourceLoader);
+			_allServices.RegisterSingle(_uiSystem);
 
 			var inputService = new UnityNewInputSystem(_gameConfig.InputHandler);
 			_allServices.RegisterSingle<IInputService>(inputService);

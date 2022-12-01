@@ -1,4 +1,5 @@
 ﻿using Configs;
+using UI;
 using UnityEngine;
 
 namespace GameLoop
@@ -7,10 +8,12 @@ namespace GameLoop
 	{
 		[SerializeField]
 		private GameConfig _gameConfig;
+		[SerializeField]
+		private UISystem _uiSystem;
 
 		private void Awake()
 		{
-			var game = new Game(_gameConfig);
+			var game = new Game(_gameConfig, _uiSystem);
 			game.Run();
 		}
 	}
