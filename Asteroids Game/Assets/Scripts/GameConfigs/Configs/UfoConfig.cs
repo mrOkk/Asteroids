@@ -1,7 +1,7 @@
 ﻿using Core;
 using UnityEngine;
 
-namespace Configs
+namespace GameConfigs.Configs
 {
 	[CreateAssetMenu(fileName = "UfoConfig", menuName = "Asteroids/UfoConfig")]
 	public class UfoConfig : ScriptableObject

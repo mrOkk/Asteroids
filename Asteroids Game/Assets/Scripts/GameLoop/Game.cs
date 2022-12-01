@@ -1,5 +1,5 @@
-﻿using Configs;
-using Core;
+﻿using Core;
+using GameConfigs;
 using GameLoop.StateMachine;
 using GameLoop.StateMachine.StateEnterArgs;
 using GameLoop.StateMachine.States;
@@ -21,7 +21,7 @@ namespace GameLoop
 		{
 			_gameConfig = gameConfig;
 			_uiSystem = uiSystem;
-			_allServices = AllServices.Container;
+			_allServices = new AllServices();
 			_stateMachine = new GameStateMachine();
 		}
 

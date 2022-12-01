@@ -1,13 +1,16 @@
-﻿using Configs;
-using Core;
+﻿using Core;
 using Core.Pools;
 using Core.WorldEntities;
-using Core.WorldEntities.DeathBehaviour;
+using CoreGameplay.Components;
+using CoreGameplay.Components.Collisions;
+using CoreGameplay.Components.DeathBehaviour;
+using CoreGameplay.Components.Tags;
+using GameConfigs.Configs;
 using Interfaces.Services;
 using Services;
 using UnityEngine;
 
-namespace Spawning.Factories
+namespace GameConfigs.Factories
 {
 	[CreateAssetMenu(menuName = "Asteroids/Factories/Asteroids")]
 	public class AsteroidsFactory : SceneObjectFactory
@@ -59,7 +62,7 @@ namespace Spawning.Factories
 
 			var collisionHandler = new CompositeCollisionHandler();
 			collisionHandler.AddCollisionHandler(new CollisionWithMissilesHandler());
-			collisionHandler.AddCollisionHandler(new ScreenBoundsCheckCollisionHandler(AllServices.Container.GetSingle<ICameraService>()));
+			collisionHandler.AddCollisionHandler(new ScreenBoundsCheckCollisionHandler(Services.GetSingle<ICameraService>()));
 
 			var collisionBehaviour = ComponentsPool.Get<CollisionBehaviour>();
 			collisionBehaviour.CollisionHandler = collisionHandler;

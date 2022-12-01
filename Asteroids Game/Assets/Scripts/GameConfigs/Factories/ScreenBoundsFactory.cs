@@ -1,11 +1,13 @@
 ﻿using Core;
 using Core.Pools;
 using Core.WorldEntities;
+using CoreGameplay.Components;
+using CoreGameplay.Components.Tags;
 using Interfaces.Services;
 using Services;
 using UnityEngine;
 
-namespace Spawning.Factories
+namespace GameConfigs.Factories
 {
 	[CreateAssetMenu(fileName = "ScreenBoundsFactory", menuName = "Asteroids/Factories/Screen bounds")]
 	public class ScreenBoundsFactory : SceneObjectFactory

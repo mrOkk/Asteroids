@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Core;
-using UnityEngine;
 
-namespace Configs
+namespace GameConfigs.Configs
 {
 	[Serializable]
 	public class AsteroidsTierData

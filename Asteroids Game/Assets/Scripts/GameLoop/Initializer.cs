@@ -1,4 +1,4 @@
-﻿using Configs;
+﻿using GameConfigs;
 using UI;
 using UnityEngine;
 

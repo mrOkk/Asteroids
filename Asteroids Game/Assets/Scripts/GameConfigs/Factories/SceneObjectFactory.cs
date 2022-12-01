@@ -4,10 +4,11 @@ using Core.WorldEntities;
 using Services;
 using UnityEngine;
 
-namespace Spawning.Factories
+namespace GameConfigs.Factories
 {
 	public abstract class SceneObjectFactory : ScriptableObject, IEntityDestroyer
 	{
+		protected AllServices Services;
 		protected ComponentsPool ComponentsPool;
 		protected ICoreWorld CoreWorld;
 
@@ -15,6 +16,7 @@ namespace Spawning.Factories
 			, ComponentsPool componentsPool
 			, ICoreWorld coreWorld)
 		{
+			Services = services;
 			CoreWorld = coreWorld;
 			ComponentsPool = componentsPool;
 		}

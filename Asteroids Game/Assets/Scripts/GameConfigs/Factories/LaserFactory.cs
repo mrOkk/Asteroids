@@ -1,10 +1,12 @@
 ﻿using Core;
 using Core.Pools;
 using Core.WorldEntities;
+using CoreGameplay.Components;
+using CoreGameplay.Components.Tags;
 using Services;
 using UnityEngine;
 
-namespace Spawning.Factories
+namespace GameConfigs.Factories
 {
 	[CreateAssetMenu(menuName = "Asteroids/Factories/Laser")]
 	public class LaserFactory : SceneObjectFactory

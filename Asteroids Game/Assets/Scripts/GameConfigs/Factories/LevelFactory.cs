@@ -1,13 +1,13 @@
-﻿using Configs;
-using Core;
+﻿using Core;
 using Core.Pools;
-using Core.Systems;
+using CoreGameplay;
+using CoreGameplay.Systems;
 using Interfaces.Services;
 using Services;
 using UI.Contexts;
 using UnityEngine;
 
-namespace Spawning.Factories
+namespace GameConfigs.Factories
 {
 	[CreateAssetMenu(fileName = "LevelFactory", menuName = "Asteroids/LevelFactory")]
 	public class LevelFactory : ScriptableObject, ILevelFactory

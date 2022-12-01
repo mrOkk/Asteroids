@@ -4,9 +4,8 @@ using Core.Pools;
 using Core.WorldEntities;
 using Services;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-namespace Spawning.Factories
+namespace GameConfigs.Factories
 {
 	[CreateAssetMenu(menuName = "Asteroids/Factories/Enemies")]
 	public class EnemiesFactory : SceneObjectFactory

@@ -1,11 +1,14 @@
 ﻿using Core;
 using Core.Pools;
 using Core.WorldEntities;
+using CoreGameplay.Components;
+using CoreGameplay.Components.Collisions;
+using CoreGameplay.Components.Tags;
 using Interfaces.Services;
 using Services;
 using UnityEngine;
 
-namespace Spawning.Factories
+namespace GameConfigs.Factories
 {
 	[CreateAssetMenu(menuName = "Asteroids/Factories/Missile")]
 	public class MissileFactory : SceneObjectFactory
@@ -59,7 +62,7 @@ namespace Spawning.Factories
 
 			var collisionHandler = new CompositeCollisionHandler();
 			collisionHandler.AddCollisionHandler(new CollisionWithEnemiesHandler());
-			collisionHandler.AddCollisionHandler(new ScreenBoundsCheckCollisionHandler(AllServices.Container.GetSingle<ICameraService>()));
+			collisionHandler.AddCollisionHandler(new ScreenBoundsCheckCollisionHandler(Services.GetSingle<ICameraService>()));
 
 			var collisionBehaviour = ComponentsPool.Get<CollisionBehaviour>();
 			collisionBehaviour.CollisionHandler = collisionHandler;

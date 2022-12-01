@@ -1,0 +1,16 @@
+{
+    "name": "Acteroids.Behaviours",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a4350144cd697154aa3a43d66d581815"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
