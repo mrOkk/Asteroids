@@ -4,6 +4,7 @@ using CoreGameplay.Components;
 using CoreGameplay.Components.Tags;
 using CoreSystem;
 using CoreSystem.Interfaces;
+using Extensions;
 using Services;
 using UnityEngine;
 
@@ -62,9 +63,7 @@ namespace GameConfigs.Factories
 
 		public override void DestroyEntity(WorldEntity worldEntity)
 		{
-			var viewLink = worldEntity.GetComponent<ViewLink<EntityView>>();
-			_sceneObjectsPool.Return(viewLink.Value);
-			viewLink.Value = null;
+			worldEntity.ReturnViewToPool(_sceneObjectsPool);
 
 			base.DestroyEntity(worldEntity);
 		}

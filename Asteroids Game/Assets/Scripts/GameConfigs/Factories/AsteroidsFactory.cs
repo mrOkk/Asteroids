@@ -6,6 +6,7 @@ using CoreGameplay.Components.DeathBehaviour;
 using CoreGameplay.Components.Tags;
 using CoreSystem;
 using CoreSystem.Interfaces;
+using Extensions;
 using GameConfigs.Configs;
 using Interfaces.Services;
 using Services;
@@ -87,9 +88,7 @@ namespace GameConfigs.Factories
 
 		public override void DestroyEntity(WorldEntity worldEntity)
 		{
-			var viewLink = worldEntity.GetComponent<ViewLink<EntityView>>();
-			_viewsPool.Return(viewLink.Value);
-			viewLink.Value = null;
+			worldEntity.ReturnViewToPool(_viewsPool);
 
 			base.DestroyEntity(worldEntity);
 		}
