@@ -11,8 +11,6 @@ namespace Spawning.Factories
 		protected ComponentsPool ComponentsPool;
 		protected ICoreWorld CoreWorld;
 
-		public LevelContext LevelContext { get; set; }
-
 		public virtual void Initialize(AllServices services
 			, ComponentsPool componentsPool
 			, ICoreWorld coreWorld)
