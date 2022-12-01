@@ -1,5 +1,8 @@
 ﻿using System;
+using Core;
+using Core.Pools;
 using Core.WorldEntities;
+using Services;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,19 +15,32 @@ namespace Spawning.Factories
 		public class FactoryWithWeight
 		{
 			public SceneObjectFactory Factory;
-			public float Weight;
+			public int Weight;
 		}
 
 		public FactoryWithWeight[] EnemyFactories;
 
-		private float _totalWeight;
+		private int _totalWeight;
+		private System.Random _randomizer;
+
+		public override void Initialize(AllServices services, ComponentsPool componentsPool, ICoreWorld coreWorld)
+		{
+			base.Initialize(services, componentsPool, coreWorld);
+
+			_totalWeight = 0;
+
+			foreach (var factoryWithWeight in EnemyFactories)
+			{
+				_totalWeight += factoryWithWeight.Weight;
+			}
+
+			_randomizer = new System.Random();
+		}
 
 		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
-			var totalWeight = GetTotalWeight();
-			var weightValue = Random.Range(0f, totalWeight);
-
-			SceneObjectFactory selectedFactory = null;
+			var weightValue = _randomizer.Next(0, _totalWeight);
+			var selectedFactory = EnemyFactories[0].Factory;
 
 			for (var index = 0; index < EnemyFactories.Length && weightValue > 0; index++)
 			{
@@ -39,21 +55,6 @@ namespace Spawning.Factories
 			}
 
 			return selectedFactory.SpawnEntity(position);
-		}
-
-		private float GetTotalWeight()
-		{
-			if (_totalWeight <= float.Epsilon)
-			{
-				_totalWeight = 0;
-
-				foreach (var factoryWithWeight in EnemyFactories)
-				{
-					_totalWeight += factoryWithWeight.Weight;
-				}
-			}
-
-			return _totalWeight;
 		}
 	}
 }

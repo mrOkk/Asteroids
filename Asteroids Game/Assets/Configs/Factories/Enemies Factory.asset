@@ -16,4 +16,4 @@ MonoBehaviour:
   - Factory: {fileID: 11400000, guid: 589d03177b6d96342b495bf0b20c61eb, type: 2}
     Weight: 10
   - Factory: {fileID: 11400000, guid: 22364c33aaeb46844abf5bf46bd64299, type: 2}
-    Weight: 10
+    Weight: 3
