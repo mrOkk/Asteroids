@@ -2,6 +2,11 @@
 {
 	public class LoadingStateArgs : StateEnterArgs
 	{
-		public string SceneName { get; } = "Game";
+		public string SceneName { get; }
+
+		public LoadingStateArgs(string sceneName)
+		{
+			SceneName = sceneName;
+		}
 	}
 }

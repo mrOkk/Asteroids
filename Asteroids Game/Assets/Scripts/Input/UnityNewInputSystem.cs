@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Extensions;
 using Interfaces.Services;
 using UnityEngine;
 
@@ -7,8 +6,6 @@ namespace Input
 {
 	public class UnityNewInputSystem : IInputService
 	{
-		public Task InitializationTask => _initializationTask.Task;
-
 		private bool _accelerate;
 		public bool Accelerate => _accelerate;
 
@@ -24,18 +21,16 @@ namespace Input
 		private bool _alternativeFire;
 		public bool AlternativeFire => _alternativeFire;
 
-		private readonly IResourceLoader _resourceLoader;
 		private readonly TaskCompletionSource<object> _initializationTask;
 
 		private InputHandlingBehaviour _inputHandler;
 
 		private bool _isActive;
 
-		public UnityNewInputSystem(IResourceLoader resourceLoader)
+		public UnityNewInputSystem(InputHandlingBehaviour inputHandlerPrefab)
 		{
-			_resourceLoader = resourceLoader;
 			_initializationTask = new TaskCompletionSource<object>();
-			Initialize().Forget();
+			Initialize(inputHandlerPrefab);
 		}
 
 		public void SetActive(bool active)
@@ -49,10 +44,9 @@ namespace Input
 			_alternativeFire = false;
 		}
 
-		private async Task Initialize()
+		private void Initialize(InputHandlingBehaviour inputHandlerPrefab)
 		{
-			var handlerPrefab = await _resourceLoader.LoadResource<InputHandlingBehaviour>("InputHandler");
-			_inputHandler = Object.Instantiate(handlerPrefab);
+			_inputHandler = Object.Instantiate(inputHandlerPrefab);
 
 			_inputHandler.OnAccelerateChanged += AccelerateChangedHandler;
 			_inputHandler.OnRotateRightChanged += RotateRightChangedHandler;

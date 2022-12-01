@@ -18,18 +18,26 @@ namespace GameLoop.StateMachine
 
 		public void Init(AllServices services)
 		{
-			_states.Add(typeof(LoadingState), new LoadingState(this, services.GetSingle<IUISystem>()));
-			_states.Add(typeof(StartLevelState), new StartLevelState(this));
-			_states.Add(typeof(RunningLevelState), new RunningLevelState(this, services.GetSingle<IInputService>()));
-			_states.Add(typeof(PlayerDeathState), new PlayerDeathState(this, services.GetSingle<IUISystem>()));
+			_states.Add(typeof(LoadingState)
+				, new LoadingState(this, services.GetSingle<IUISystem>()));
+			_states.Add(typeof(StartLevelState)
+				, new StartLevelState(this
+					, services.GetSingle<ILevelFactory>()
+					, services.GetSingle<ICameraService>()));
+			_states.Add(typeof(RunningLevelState)
+				, new RunningLevelState(this
+					, services.GetSingle<IInputService>()
+					, services.GetSingle<IUISystem>()));
+			_states.Add(typeof(PlayerDeathState)
+				, new PlayerDeathState(this
+					, services.GetSingle<IUISystem>()));
 		}
 
 		public void Enter<TState>(StateEnterArgs.StateEnterArgs args) where TState : class, IGameState
 		{
 			ExitState(_currentState as IExitableState);
-			var newState = GetState<TState>();
-			EnterState(newState, args);
-			_currentState = newState;
+			_currentState = GetState<TState>();
+			EnterState(_currentState, args);
 		}
 
 		private void ExitState(IExitableState exitableState)
