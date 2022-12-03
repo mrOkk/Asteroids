@@ -7,13 +7,13 @@ namespace Extensions
 {
 	public static class EntityExtension
 	{
-		public static void ReturnViewToPool<TView>(this WorldEntity entity, SceneObjectsPool<TView> pool)
+		public static void ReturnViewToPool<TView>(this WorldEntity entity, string key, SceneObjectsPool pool)
 			where TView : EntityView
 		{
 			if (entity.HasComponent<ViewLink<TView>>())
 			{
 				var viewLink = entity.GetComponent<ViewLink<TView>>();
-				pool.Return(viewLink.Value);
+				pool.Return(key, viewLink.Value);
 				viewLink.Value = null;
 			}
 		}

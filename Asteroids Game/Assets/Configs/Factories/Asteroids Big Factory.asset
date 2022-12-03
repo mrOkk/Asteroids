@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Asteroids Big Factory
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: f4bc5d50d30258248a82256b9af8fc0b, type: 2}
+  _prefabKey: AsteroidsBig

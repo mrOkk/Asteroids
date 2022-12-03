@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ScreenBoundsFactory
   m_EditorClassIdentifier: 
   _screenBoundsPrefab: {fileID: 5308180425246133701, guid: 48c74390a3c5da348b3b6a2f5a77d06a, type: 3}
+  _prefabKey: ScreenBounds

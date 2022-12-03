@@ -21,21 +21,24 @@ namespace GameConfigs.Factories
 		[SerializeField]
 		private UfoConfig _config;
 
-		private SceneObjectsPool<EntityView> _sceneObjectsPool;
+		// TODO: move key to config
+		[SerializeField]
+		private string _prefabKey;
 
 		public override void Initialize(AllServices services
 			, ComponentsPool componentsPool
+			, SceneObjectsPool sceneObjectsPool
 			, ICoreWorld coreWorld)
 		{
-			base.Initialize(services, componentsPool, coreWorld);
-			_sceneObjectsPool = new SceneObjectsPool<EntityView>(_config.Prefab);
+			base.Initialize(services, componentsPool, sceneObjectsPool, coreWorld);
+			SceneObjectsPool.RegisterPrefab(_prefabKey, _config.Prefab);
 		}
 
 		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
 			var worldEntity = new WorldEntity(this);
 
-			var entityView = _sceneObjectsPool.Get(position, rotation);
+			var entityView = SceneObjectsPool.Get<EntityView>(_prefabKey, position, rotation);
 			entityView.WorldEntity = worldEntity;
 
 			var viewLink = ComponentsPool.Get<ViewLink<EntityView>>();
@@ -92,7 +95,7 @@ namespace GameConfigs.Factories
 
 		public override void DestroyEntity(WorldEntity worldEntity)
 		{
-			worldEntity.ReturnViewToPool(_sceneObjectsPool);
+			worldEntity.ReturnViewToPool<EntityView>(_prefabKey, SceneObjectsPool);
 
 			base.DestroyEntity(worldEntity);
 		}

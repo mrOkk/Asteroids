@@ -13,6 +13,7 @@ namespace GameConfigs.Factories
 	[CreateAssetMenu(menuName = "Asteroids/Factories/Laser")]
 	public class LaserFactory : SceneObjectFactory
 	{
+		// TODO: convert everything to config
 		[SerializeField]
 		private EntityView _prefab;
 		[SerializeField]
@@ -20,21 +21,23 @@ namespace GameConfigs.Factories
 		[SerializeField]
 		private float _length = 10f;
 
-		private SceneObjectsPool<EntityView> _sceneObjectsPool;
-
+		// TODO: move key to config
+		[SerializeField]
+		private string _prefabKey;
 
 		public override void Initialize(AllServices services
 			, ComponentsPool componentsPool
+			, SceneObjectsPool sceneObjectsPool
 			, ICoreWorld coreWorld)
 		{
-			base.Initialize(services, componentsPool, coreWorld);
-			_sceneObjectsPool = new SceneObjectsPool<EntityView>(_prefab);
+			base.Initialize(services, componentsPool, sceneObjectsPool, coreWorld);
+			SceneObjectsPool.RegisterPrefab(_prefabKey, _prefab);
 		}
 
 		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
 			var entity = new WorldEntity(this);
-			var view = _sceneObjectsPool.Get(position, rotation);
+			var view = SceneObjectsPool.Get<EntityView>(_prefabKey, position, rotation);
 			view.WorldEntity = entity;
 
 			var viewLink = ComponentsPool.Get<ViewLink<EntityView>>();
@@ -63,7 +66,7 @@ namespace GameConfigs.Factories
 
 		public override void DestroyEntity(WorldEntity worldEntity)
 		{
-			worldEntity.ReturnViewToPool(_sceneObjectsPool);
+			worldEntity.ReturnViewToPool<EntityView>(_prefabKey, SceneObjectsPool);
 
 			base.DestroyEntity(worldEntity);
 		}

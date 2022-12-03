@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Asteroids Small Factory
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: abcf2eb6e3a93b94c86a3bbc683e9ad6, type: 2}
+  _prefabKey: AsteroidsSmall

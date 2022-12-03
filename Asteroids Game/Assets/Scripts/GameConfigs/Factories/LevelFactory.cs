@@ -32,6 +32,7 @@ namespace GameConfigs.Factories
 		private ICameraService _cameraService;
 		private GameConfig _gameConfig;
 		private ComponentsPool _componentsPool;
+		private SceneObjectsPool _sceneObjectsPool;
 
 		public void Initialize(CoreLoopRunner coreLoopRunnerPrefab
 			, AllServices services
@@ -46,10 +47,11 @@ namespace GameConfigs.Factories
 			_cameraService = services.GetSingle<ICameraService>();
 			_gameConfig = gameConfig;
 			_componentsPool ??= new ComponentsPool();
+			_sceneObjectsPool ??= new SceneObjectsPool();
 
 			foreach (var factory in _allFactories)
 			{
-				factory.Initialize(services, _componentsPool, _coreLoopRunner);
+				factory.Initialize(services, _componentsPool, _sceneObjectsPool, _coreLoopRunner);
 			}
 		}
 

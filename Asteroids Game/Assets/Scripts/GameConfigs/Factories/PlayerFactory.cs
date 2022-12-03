@@ -21,18 +21,22 @@ namespace GameConfigs.Factories
 		[SerializeField]
 		private PlayerConfig _config;
 
-		private SceneObjectsPool<PlayerEntityView> _sceneObjectsPool;
+		// TODO: move key to config
+		[SerializeField]
+		private string _prefabKey;
 
-		public override void Initialize(
-			AllServices services, ComponentsPool componentsPool, ICoreWorld coreWorld)
+		public override void Initialize(AllServices services
+			, ComponentsPool componentsPool
+			, SceneObjectsPool sceneObjectsPool
+			, ICoreWorld coreWorld)
 		{
-			base.Initialize(services, componentsPool, coreWorld);
-			_sceneObjectsPool = new SceneObjectsPool<PlayerEntityView>(_config.PlayerPrefab);
+			base.Initialize(services, componentsPool, sceneObjectsPool, coreWorld);
+			sceneObjectsPool.RegisterPrefab(_prefabKey, _config.PlayerPrefab);
 		}
 
 		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
-			var view = _sceneObjectsPool.Get(position, rotation);
+			var view = SceneObjectsPool.Get<PlayerEntityView>(_prefabKey, position, rotation);
 			var entity = new WorldEntity(this);
 			view.WorldEntity = entity;
 
@@ -102,7 +106,7 @@ namespace GameConfigs.Factories
 
 		public override void DestroyEntity(WorldEntity worldEntity)
 		{
-			worldEntity.ReturnViewToPool(_sceneObjectsPool);
+			worldEntity.ReturnViewToPool<PlayerEntityView>(_prefabKey, SceneObjectsPool);
 
 			base.DestroyEntity(worldEntity);
 		}

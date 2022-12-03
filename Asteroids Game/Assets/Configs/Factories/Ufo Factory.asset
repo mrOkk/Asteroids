@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33d72a065b14e36994485a7bad70639, type: 3}
   m_Name: Ufo Factory
   m_EditorClassIdentifier: 
-  Config: {fileID: 11400000, guid: 91f4d868d4d6aa14d90069ac7724beae, type: 2}
+  _config: {fileID: 11400000, guid: 91f4d868d4d6aa14d90069ac7724beae, type: 2}
+  _prefabKey: Ufo

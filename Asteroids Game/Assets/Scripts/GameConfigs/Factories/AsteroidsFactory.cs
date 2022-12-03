@@ -20,21 +20,25 @@ namespace GameConfigs.Factories
 		[SerializeField]
 		private AsteroidsConfig _config;
 
-		private SceneObjectsPool<EntityView> _viewsPool;
+		// TODO: move key to config
+		[SerializeField]
+		private string _prefabKey;
 
-		public override void Initialize(
-			AllServices services, ComponentsPool componentsPool, ICoreWorld coreWorld)
+		public override void Initialize(AllServices services
+			, ComponentsPool componentsPool
+			, SceneObjectsPool sceneObjectsPool
+			, ICoreWorld coreWorld)
 		{
-			base.Initialize(services, componentsPool, coreWorld);
+			base.Initialize(services, componentsPool, sceneObjectsPool, coreWorld);
 
-			_viewsPool = new SceneObjectsPool<EntityView>(_config.Prefab);
+			SceneObjectsPool.RegisterPrefab(_prefabKey, _config.Prefab);
 		}
 
 		public override WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default)
 		{
 			var worldEntity = new WorldEntity(this);
 
-			var entityView = _viewsPool.Get(position, rotation);
+			var entityView = SceneObjectsPool.Get<EntityView>(_prefabKey, position, rotation);
 			entityView.WorldEntity = worldEntity;
 
 			var moveSpeed = _config.Speed;
@@ -88,7 +92,7 @@ namespace GameConfigs.Factories
 
 		public override void DestroyEntity(WorldEntity worldEntity)
 		{
-			worldEntity.ReturnViewToPool(_viewsPool);
+			worldEntity.ReturnViewToPool<EntityView>(_prefabKey, SceneObjectsPool);
 
 			base.DestroyEntity(worldEntity);
 		}

@@ -15,3 +15,4 @@ MonoBehaviour:
   _prefab: {fileID: 5108887623270927548, guid: f92ccfd5ea0acd24ba81d5b3b1ec331c, type: 3}
   _speed: 7
   _lifetime: 2
+  _prefabKey: Missile

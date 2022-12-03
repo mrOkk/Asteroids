@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53689c0d17444bdcbeaf7a3c0378aad3, type: 3}
   m_Name: Player Factory
   m_EditorClassIdentifier: 
-  Config: {fileID: 11400000, guid: e520f75dadc5b0646b9ea774614a84eb, type: 2}
+  _config: {fileID: 11400000, guid: e520f75dadc5b0646b9ea774614a84eb, type: 2}
+  _prefabKey: Player

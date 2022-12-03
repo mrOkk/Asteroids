@@ -11,15 +11,19 @@ namespace GameConfigs.Factories
 	{
 		protected AllServices Services;
 		protected ComponentsPool ComponentsPool;
+		protected SceneObjectsPool SceneObjectsPool;
 		protected ICoreWorld CoreWorld;
 
-		public virtual void Initialize(AllServices services
+		public virtual void Initialize(
+			AllServices services
 			, ComponentsPool componentsPool
+			, SceneObjectsPool sceneObjectsPool
 			, ICoreWorld coreWorld)
 		{
 			Services = services;
 			CoreWorld = coreWorld;
 			ComponentsPool = componentsPool;
+			SceneObjectsPool = sceneObjectsPool;
 		}
 
 		public abstract WorldEntity SpawnEntity(Vector2 position = default, Quaternion rotation = default);

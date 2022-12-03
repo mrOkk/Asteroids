@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Laser Factory
   m_EditorClassIdentifier: 
   _prefab: {fileID: 674722132821623965, guid: 7d836c426082fab48b707bb2856e582b, type: 3}
+  _lifetime: 0.1
+  _length: 10
+  _prefabKey: Laser

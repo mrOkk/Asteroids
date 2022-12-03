@@ -23,9 +23,12 @@ namespace GameConfigs.Factories
 		private int _totalWeight;
 		private System.Random _randomizer;
 
-		public override void Initialize(AllServices services, ComponentsPool componentsPool, ICoreWorld coreWorld)
+		public override void Initialize(AllServices services
+			, ComponentsPool componentsPool
+			, SceneObjectsPool sceneObjectsPool
+			, ICoreWorld coreWorld)
 		{
-			base.Initialize(services, componentsPool, coreWorld);
+			base.Initialize(services, componentsPool, sceneObjectsPool, coreWorld);
 
 			_totalWeight = 0;
 
